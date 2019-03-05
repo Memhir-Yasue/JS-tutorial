@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script>
+      /*
+        Re assigning values to variables is LEGAL!
+      */
+      var i = 10;
+      var i = "Hello";
+      var i = false;
+      /*
+        The following is an example of a global variables and scoping
+      */
+      var global_var = "This is a global variable"; /* the scope is global */
+      function returnVar() {
+        return global_var /* returns the variable */
+      }
+
+
+      /*
+        The follwing is an example of a variable with a local scope
+      */
+
+      function setLocal() {
+        var local_var = "This is a local variable. I only exist under this function!"; /* The variable "state" exists only withn the function "setState" aka block scoping */
+      }
+      setLocal(); // activating variable by calling the function it exists under
+      /* setLocal(local_var)  undefined because variable state does not exist outside of setState() */
+
+
+      /*
+        If a variable is declared without the keyword 'var', then it's scope is ALWAYS global.
+        Example below
+      */
+
+      function setPower() {
+        power = "on";
+      }
+      setPower(); // activating variable by calling the function it exists under
+      alert(power);
+
+      /*
+      The following two functions below demonstrates that in some cases, JS not support block scope
+      */
+      function checkWeight(weight) {
+        if (weight > 20) {
+          var text = "No free shipping!";
+          alert(text)
+        }
+        alert(text) // but wait isn't text outside the scope of the if statement?
+        /*
+          Not exactly, in JS, we only care if a variable is declared INSIDE or OUTSIDE of a function
+            If it's outside a function then it's 'global'.
+            If it's inside a function then it's acessible withn that function only
+          Thus since var text is declared inside the checkWeight function,the code below is identical and works the same way.
+        */
+      }
+
+      function checkWeightTWIN(weight) {
+        var text = "No free shipping!";
+        if (weight > 20) {
+          alert(text);
+        }
+        alert(text);
+      }
+
+    </script>
+  </body>
+</html>
